@@ -1,0 +1,10 @@
+/logs/
+/reports/
+/sh.workflow/
+/book_info/
+test.*
+test
+temp_*
+proxy_list.txt
+/.idea/
+/DS_Store
