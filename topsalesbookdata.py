@@ -1,6 +1,7 @@
-from progress.bar import Bar
+import time
 import os
 import pandas as pd
+import multiprocessing as mp
 
 import nameTobook_v2
 
@@ -40,16 +41,19 @@ if __name__ == "__main__":
     title = extract_title(df)
     title = remove_duplicate(title)
     list(title)
-    if os.path.exists("book_info/publicDateAllSales.csv"):
-        f = open("book_info/publicDateAllSales.csv", "a")
+    if os.path.exists("./book_info/publicDateAllSales.csv"):
+        f = open("./book_info/publicDateAllSales.csv", "a")
         cur = pd.read_csv("book_info/publicDateAllSales.csv")
         # remove duplicate title in cur
         title = title[~title.isin(cur["title"])]
+    elif os.path.exists('./book_info/'):
+        f = open("book_info/publicDateAllSales.csv", "w")
+        f.write("title,author,published,date\n")
     else:
+        os.mkdir("./book_info/")
         f = open("book_info/publicDateAllSales.csv", "w")
         f.write("title,author,published,date\n")
     total = len(title)
-    bar = Bar('Processing', max=total)
     for idx, string in enumerate(title):
         # title[idx] = [string].extend([j for i in get_data(string) for j in i])
         temp = get_data(string)
@@ -63,9 +67,7 @@ if __name__ == "__main__":
         # json.dump(dic)
         f.write(
             f"{string.replace(',', '.')},{str(temp[0]).replace(',', '.')},{str(temp[1]).replace(',', '.')},{str(temp[2]).replace(',', '.')}\n")
-        bar.next()
         print(f"\r{idx+1}/{total}")
-    # title = pd.DataFrame(title)
-    # title.to_csv("book_info/paper_2024-04-15_allSales.csv", encoding="utf8", index=False)
+    title = pd.DataFrame(title)
+    title.to_csv(f"book_info/paper_{time.strftime('%Y-%m-%d',time.localtime())}_allSales.csv", encoding="utf8", index=False)
     f.close()
-    bar.finish()

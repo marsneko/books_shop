@@ -6,10 +6,14 @@ import time
 class Spyder:
     paperlink = "https://search.books.com.tw/search/query/cat/1/sort/1/v/0/page/1/spell/3/ms2/ms2_1/key/"
     ebooklink = "https://search.books.com.tw/search/query/cat/6/sort/1/v/0/page/1/spell/3/ms2/ms2_1/key/"
-    headers = {
-        'User-Agent':
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 '
-            'Safari/605.1.15'}
+    headers = dict({})
+
+    def __init__(self, headers=None):
+        if headers is None:
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+            }
+        self.headers = headers
 
     def getpaper(self, req):
         t = 0
@@ -84,10 +88,8 @@ def getbookdata(data):
     return author, public, date
 
 
-
-
 if __name__ == "__main__":
-    spyder = Spyder()
+    spyder = Spyder(headers={"User-Agent": "Mozilla/5.0"})
     inp = input("book title: ")
     data = spyder.getpaper(inp)
     getbookdata(data)

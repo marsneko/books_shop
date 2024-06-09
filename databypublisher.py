@@ -5,12 +5,8 @@ import re
 from bs4 import BeautifulSoup
 
 
-def geturloffirstpage(url_):
-    headers = {
-        'User-Agent':
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 '
-            'Safari/605.1.15'}
-
+def geturloffirstpage(url_,headers):
+    headers = headers
     water = requests.get(url_, headers=headers)
     time.sleep(2)
     if water.status_code != 200:
@@ -34,12 +30,9 @@ def priceParser(s):
             print(f"{s} have some problem")
     return ret1, ret2
 
-def getpagedata(template, num_of_pages):
+def getpagedata(template, num_of_pages,headers):
     df = []
-    headers = {
-        'User-Agent':
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 '
-            'Safari/605.1.15'}
+    headers = headers
     for i in range(1, num_of_pages + 1):
         print("running page:", i, "of", num_of_pages, "pages")
         time.sleep(8)
@@ -66,6 +59,6 @@ def getpagedata(template, num_of_pages):
 
 if __name__ == '__main__':
     url = "https://www.books.com.tw/web/sys_puballb/books/?pubid=ctpubco&o=1&v=1"
-    num = geturloffirstpage(url)
-    df = getpagedata(url, num)
+    num = geturloffirstpage(url, headers={"User-Agent": "Mozilla/5.0"})
+    df = getpagedata(url, num, headers={"User-Agent": "Mozilla/5.0"})
     df.to_csv("./publisher_data/times.csv", index=False)

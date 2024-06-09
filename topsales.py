@@ -87,7 +87,7 @@ def saletops():
             except:
                 print(f"error in cate {_} and attr {__}")
     with io.open(
-            f'/Users/eric/Documents/SchoolCourses/112/112-2/bookcart_crawler/topSales/sale_{time.strftime("%Y-%m-%d", time.localtime())}.json',
+            f'./topSales/sale_{time.strftime("%Y-%m-%d", time.localtime())}.json',
             "w", encoding="utf8") as f:
         json.dump(saltop, f, ensure_ascii=False)
     f.close()
@@ -115,7 +115,7 @@ def newtops():
         except:
             print(f"error in cate {_}")
     with open(
-            f'/Users/eric/Documents/SchoolCourses/112/112-2/bookcart_crawler/newSales/new_{time.strftime("%Y-%m-%d", time.localtime())}.json',
+            f'./newSales/new_{time.strftime("%Y-%m-%d", time.localtime())}.json',
             "w", encoding="utf8") as f:
         json.dump(newtop, f, ensure_ascii=False)
     f.close()
@@ -139,7 +139,7 @@ def pretops():
     except:
         print(f"error in cat pretops")
     with open(
-            f'/Users/eric/Documents/SchoolCourses/112/112-2/bookcart_crawler/preSales/pre_{time.strftime("%Y-%m-%d", time.localtime())}.json',
+            f'./preSales/pre_{time.strftime("%Y-%m-%d", time.localtime())}.json',
             "w", encoding="utf8") as f:
         json.dump(pretop, f, ensure_ascii=False)
     f.close()

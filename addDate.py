@@ -22,8 +22,8 @@ def addDate(mainData: pd.DataFrame, labelData: pd.DataFrame):
 
 
 if __name__ == '__main__':
-    main = pd.read_csv("/Users/eric/Documents/SchoolCourses/112/112-2/bookcart_crawler/data/2024-04-29_allSales.csv")
+    main = pd.read_csv("./data/2024-04-29_allSales.csv")
     labels = pd.read_csv(
-        "/Users/eric/Documents/SchoolCourses/112/112-2/bookcart_crawler/book_info/publicDateAllSales.csv")
+        "./book_info/publicDateAllSales.csv")
     output = addDate(main, labels)
     output.to_csv("./dateData/2024-04-29_Date.csv")
