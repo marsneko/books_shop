@@ -23,7 +23,7 @@ class Spyder:
             water = requests.get(self.paperlink + req, headers=self.headers)
 
             if water.status_code == 484:
-                print("Error: ", water.status_code, "too many requests - wait 10 seconds")
+                print("Error: ", water.status_code, "too many requests - wait 40 seconds")
                 while water.status_code == 484 and t < 10:
                     print(f"{t}-th try")
                     time.sleep(40)
@@ -48,7 +48,7 @@ class Spyder:
             # print(self.ebooklink + req)
             water = requests.get(self.ebooklink + req, headers=self.headers)
             if water.status_code == 484:
-                print("Error: ", water.status_code, "too many requests - wait 10 seconds")
+                print("Error: ", water.status_code, "too many requests - wait 40 seconds")
                 while water.status_code == 484 and t < 10:
                     time.sleep(40)
                     water = requests.get(self.ebooklink + req, headers=self.headers)
