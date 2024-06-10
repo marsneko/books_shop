@@ -1,10 +1,11 @@
 /logs/
 /reports/
 /sh.workflow/
-/book_info/
 test.*
 test
 temp_*
 proxy_list.txt
 /.idea/
 /DS_Store
+/book_info/publicDateAllSales.csv
+/book_info/paper_2024-06-09_allSales.csv
