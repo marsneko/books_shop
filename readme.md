@@ -102,6 +102,9 @@
 ### 分析結果
 - 主要使用`publisher`中的資料以`publisherAnalysis.py`進行分析，結果儲存至`pic`資料夾中。
 - 在這份資料中，紙本書的部分依然是維持以79折為主，並且出版日期與原始價格對於其折數皆無明顯影響。
+
+![](./pics/ebook_ver_publisher_discount_sns.png)
+
 - 而在電子書與紙本書的部分可以發現其電子書的定價基本上固定為紙本書的79折，並且其出版日期與原始價格對於其折數皆無明顯影響。
   
 ![折數＿出版日期](./pics/ebook_ver_publisher_discount_on_origion_price_rate_by_original_price_scatter.png)
