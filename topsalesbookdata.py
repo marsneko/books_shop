@@ -70,6 +70,3 @@ if __name__ == "__main__":
     pool.close()
     pool.join()
 
-    title_df = pd.DataFrame(title, columns=["title"])
-    title_df.to_csv(f"book_info/paper_{time.strftime('%Y-%m-%d', time.localtime())}_allSales.csv", encoding="utf8",
-                    index=False)
