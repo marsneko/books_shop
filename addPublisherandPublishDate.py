@@ -26,4 +26,4 @@ if __name__ == '__main__':
     labels = pd.read_csv(
         "./book_info/publicDateAllSales.csv")
     output = addDate(main, labels)
-    output.to_csv("./dateData/2024-04-29_Date.csv")
+    output.to_csv("./dateData/allSalesData.csv")

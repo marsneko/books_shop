@@ -111,5 +111,5 @@
 
 - 同時，在進行打折時紙本書與電子書之間不會特別參照對方的折數進行打折，因此會出現部分電子書售價高於紙本書售價的現象。
 
-![折數＿售價](./pics/ebook_ver_publisher_discount_on_origion_price_rate_by_price_scatter.png)
+![折數＿售價](./pics/ebook_paper_price.png)
 
