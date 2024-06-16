@@ -66,7 +66,7 @@
 
 ![折數＿出版日期](./pics/scatter_plot_publishDate__discount.png)
 
-![折數＿排名](./pics/RankDiscount.png)
+![折數＿排名](./pics/scatter_plot_rank_discount.png)
 
 
 ## 出版社資料
