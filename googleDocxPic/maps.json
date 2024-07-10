@@ -1,0 +1,63 @@
+# data cleaning information
+discount_map = {
+    0: 100,
+    1: 10,
+    5: 50,
+    7: 70,
+    9: 90
+}
+type_map={
+    "topsales":0,
+    "newsales":1,
+    "presales":2
+}
+cate_map = {
+    1: "文學小說",
+    2: "商業理財",
+    3: "藝術設計",
+    4: "人文社科",
+    6: "自然科普",
+    7: "心理勵志",
+
+    8: "醫療保健",
+    9: "飲食",
+    10: "生活風格",
+    11: "旅遊",
+    12: "宗教命理",
+    13: "親子教養",
+    14: "青少年文學",
+    15: "輕小說",
+    16: "漫畫、圖文書",  #
+    19: "電腦資訊",
+    22: "影視偶像",
+
+                        #以下不計
+    17: "語言學習",
+    18: "考試用書",     #
+    20: "專業出版品",    #
+    24: "國中小參考書"    #
+}
+cate_eng_map = {
+    1:'Literature & Fiction',
+    2:'Business & Money',
+    3:'Arts & Photography',
+    4:'Politics & Social Sciences',
+    6:'Science & Math',
+    7:'Self-Help',
+    8:'Health, Fitness & Dieting',
+    9:'Health, Fitness & Dieting',
+    10:'Cookbooks, Food & Wine',
+    11:'Travel',
+    12:'Religion & Spirituality',
+    13:'Parenting & Relationships',
+    14:'Teen & Young Adult',
+    15:'Literature & Fiction',
+    16:'Comics & Graphic Novels',
+    19:'Computers & Technology',
+    22:'Humor & Entertainment',
+    17:'Education & Teaching',
+    18:'Test Preparation',
+    20:'Education & Teaching',
+    24:'Education & Teaching'
+}
+
