@@ -9,3 +9,14 @@ proxy_list.txt
 /DS_Store
 /book_info/publicDateAllSales.csv
 /book_info/paper_2024-06-09_allSales.csv
+/data/2024-04-01_allSales.csv
+/data/2024-04-08_allSales.csv
+/data/2024-04-15_allSales.csv
+/data/2024-04-18_allSales.csv
+/data/2024-04-18_allSales.json
+/data/2024-04-20_allSales.csv
+/dateData/2024-04-20_Date.csv
+/data/2024-04-22_allSales.csv
+/allSales.csv
+/getValidProxy.py
+/pics/paper_publisher_salePrice.png
