@@ -171,9 +171,9 @@ def ScatterPlotByCategory(df: pd.DataFrame, _x: str, _y: str, cate: [str], path:
             y = temp[_y]
 
         ax[idx // 2][idx % 2].scatter(x, y, s=10)
-        ax[idx // 2][idx % 2].set_title(cate[idx])
-        ax[idx // 2][idx % 2].set_xlabel(xlabel)
-        ax[idx // 2][idx % 2].set_ylabel(ylabel)
+        ax[idx // 2][idx % 2].set_title(cate[idx], fontsize=20)
+        ax[idx // 2][idx % 2].set_xlabel(xlabel, fontsize=15)
+        ax[idx // 2][idx % 2].set_ylabel(ylabel, fontsize=15)
         if xlim is not None:
             ax[idx // 2][idx % 2].set_xlim(xlim[0], xlim[1])
         if ylim is not None:
@@ -182,12 +182,12 @@ def ScatterPlotByCategory(df: pd.DataFrame, _x: str, _y: str, cate: [str], path:
         p = np.poly1d(z)
         ax[idx // 2][idx % 2].plot(x, p(x), "r--")
     if title is None:
-        title = f'{_x}-{_y} Scatter Plot'
+        plt.suptitle(f'{_x}-{_y} Scatter Plot')
     elif title == '':
         pass
     else:
         plt.suptitle(title)
-    plt.savefig(path)
+    plt.savefig(path, dpi=300)
 
 
 def preformatAmazonData(df: pd.DataFrame) -> pd.DataFrame:
@@ -299,17 +299,16 @@ if __name__ == "__main__":
         'Computers & Technology',
         'Humor & Entertainment'
     ]
-    dfbook = dfbook.drop_duplicates(subset=['title', 'rank', 'discount'])
-    ScatterPlotByCategory(dfbook, 'rank', "discount", cates, title="", cate_name='eng_cate',
-                          path='./googleDocxPic/BookRankDiscountScatterPlot.png'
-                          , ylim=[0, 1])
-    ScatterPlotByCategory(dfbook, 'PublishDate', 'discount', cates, title='', cate_name='eng_cate', x_is_date=True
-                          , path='./googleDocxPic/BookPublishDateDiscountScatterPlotTest.png', ylim=[0, 1])
-    ScatterPlotByCategory(dfamazon, 'PublishDate', 'discount', cates, title='', cate_name='department1', x_is_date=True,
-                          path='./googleDocxPic/AmazonDateDiscount.png', ylim=[0, 1])
-
     dfamazon_ = GenerateFirstDepRank(dfamazon, cates)
     dfamazon_ = dfamazon_[dfamazon_['FirstDepRank'] <= 100]
-    ScatterPlotByCategory(dfamazon_, 'FirstDepRank', 'discount', cates, title='', cate_name='department1', ylim=[0, 1],
+    dfbook = dfbook.drop_duplicates(subset=['rank','cate'])
+    ScatterPlotByCategory(dfbook, 'rank', "discount", cates, title="", cate_name='eng_cate',
+                          path='./googleDocxPic/BookRankDiscountScatterPlot.png'
+                          , ylim=[0, 1.2])
+    ScatterPlotByCategory(dfbook, 'PublishDate', 'discount', cates, title='', cate_name='eng_cate', x_is_date=True
+                          , path='./googleDocxPic/BookPublishDateDiscountScatterPlotTest.png', ylim=[0, 1.2])
+    ScatterPlotByCategory(dfamazon_, 'PublishDate', 'discount', cates, title='', cate_name='department1', x_is_date=True,
+                          path='./googleDocxPic/AmazonDateDiscount.png', ylim=[0, 1.2])
+    ScatterPlotByCategory(dfamazon_, 'FirstDepRank', 'discount', cates, title='', cate_name='department1', ylim=[0, 1.2],
                           path='./googleDocxPic/AmazonFirstDepRankDiscount.png')
 # %%
