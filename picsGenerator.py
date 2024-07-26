@@ -301,6 +301,7 @@ if __name__ == "__main__":
     ]
     dfamazon_ = GenerateFirstDepRank(dfamazon, cates)
     dfamazon_ = dfamazon_[dfamazon_['FirstDepRank'] <= 100]
+    dfbook = dfbook[dfbook['attr'] == 7]
     dfbook = dfbook.drop_duplicates(subset=['rank','cate'])
     ScatterPlotByCategory(dfbook, 'rank', "discount", cates, title="", cate_name='eng_cate',
                           path='./googleDocxPic/BookRankDiscountScatterPlot.png'
