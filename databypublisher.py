@@ -5,7 +5,7 @@ import re
 from bs4 import BeautifulSoup
 
 
-def geturloffirstpage(url_,headers):
+def geturloffirstpage(url_, headers):
     headers = headers
     water = requests.get(url_, headers=headers)
     time.sleep(2)
@@ -19,6 +19,7 @@ def geturloffirstpage(url_,headers):
     except:
         return None
 
+
 def priceParser(s):
     ret1, ret2 = None, None
     try:
@@ -30,7 +31,8 @@ def priceParser(s):
             print(f"{s} have some problem")
     return ret1, ret2
 
-def getpagedata(template, num_of_pages,headers):
+
+def getpagedata(template, num_of_pages, headers):
     df = []
     headers = headers
     for i in range(1, num_of_pages + 1):
@@ -48,17 +50,31 @@ def getpagedata(template, num_of_pages,headers):
                 "author": j.find_all(attrs={'class': "list clearfix"})[0].li.a.text,
                 "publisher": j.find_all(attrs={'class': "list clearfix"})[0].li.span.a.text,
                 "publication_date": j.find_all(attrs={'class': "list clearfix"})[0].li.span.text.split('出版日期：')[1],
-                'price':j.find(attrs= {'class':'price'}).li.text
+                'price': j.find(attrs={'class': 'price'}).li.text,
+                "link": j.a.get('href')
+
             }
             discount, price = priceParser(output['price'])
-            output = [output["title"], output["author"], output["publisher"], output["publication_date"], discount, price]
+            output = [output["title"], output["author"], output["publisher"], output["publication_date"], discount,
+                      price, output["link"]]
             df.append(output)
-    df_ = pd.DataFrame(df, columns=["title", "author", "publisher", "publication_date", "discount", "price"])
+        print(df[-1])
+    df_ = pd.DataFrame(df, columns=["title", "author", "publisher", "publication_date", "discount", "price", 'url'])
     return df_
 
 
 if __name__ == '__main__':
-    url = "https://www.books.com.tw/web/sys_puballb/books/?pubid=ctpubco&o=1&v=1"
-    num = geturloffirstpage(url, headers={"User-Agent": "Mozilla/5.0"})
-    df = getpagedata(url, num, headers={"User-Agent": "Mozilla/5.0"})
-    df.to_csv("./publisher_data/times.csv", index=False)
+    publiser_dict = {
+        'fangzhi': 'https://www.books.com.tw/web/sys_puballb/books/?pubid=fine&o=1&v=1',
+        'how': 'https://www.books.com.tw/web/sys_puballb/books/?pubid=how&o=1&v=1',
+        'jioujing': 'https://www.books.com.tw/web/sys_puballb/books/?pubid=athena&o=1&v=1',
+        'lonely': 'https://www.books.com.tw/web/sys_puballb/books/?pubid=solo&o=1&v=1',
+        'shianjiue': 'https://www.books.com.tw/web/sys_puballb/books/?pubid=yuance6c&o=1&v=1',
+        'yuanshen': 'https://www.books.com.tw/web/sys_puballb/books/?pubid=yuanshen&o=1&v=1',
+        #'time': "https://www.books.com.tw/web/sys_puballb/books/?pubid=ctpubco&o=1&v=1"
+    }
+    for name,url in publiser_dict.items():
+        num = geturloffirstpage(url, headers={"User-Agent": "Mozilla/5.0"})
+        df = getpagedata(url, num, headers={"User-Agent": "Mozilla/5.0"})
+        df.to_csv(f"./publisher_data_withlink/{name}.csv", index=False)
+        print(f"finish {name} publisher")

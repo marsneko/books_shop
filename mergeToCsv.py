@@ -56,4 +56,31 @@ def fromJsonToCsv(wd=""):
 
 
 if __name__ == "__main__":
-    fromJsonToCsv()
+    #fromJsonToCsv()
+    data = [["topsales","./topSales/sale_2024-08-05.json"],["newsales", "./newSales/new_2024-08-05.json"],["presales", "./preSales/pre_2024-08-05.json"]]
+    pd = []
+    for dd in data:
+        d = dd[1]
+        with open("./" + d, "r", encoding="utf8") as f:
+            print(f"reading {d}")
+            try:
+                tep = json.load(f)
+                for i in tep:
+                    for j in i["data"]:
+                        j["title"] = j["title"].replace(",", ".")
+                        j["date"] = i["date"]
+                        j["type"] = dd[0]
+                        j["discount"], j["price_"] = priceParser(j["price"])
+                        if j["discount"] is None or j["price_"] is None:
+                            print(j)
+                        pd.append(j)
+            except:
+                print(f"error in {d}")
+    pd = pandas.DataFrame(pd)
+    print(pd.dtypes)
+    print(pd.shape)
+    print(pd.iloc[10])
+    print(pd.size)
+    pd.to_csv( f"./data/{time.strftime('%Y-%m-%d',time.localtime())}_allSales.csv", index=False)
+
+
