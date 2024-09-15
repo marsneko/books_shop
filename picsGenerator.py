@@ -171,9 +171,10 @@ def ScatterPlotByCategory(df: pd.DataFrame, _x: str, _y: str, cate: [str], path:
             y = temp[_y]
 
         ax[idx // 2][idx % 2].scatter(x, y, s=10)
-        ax[idx // 2][idx % 2].set_title(cate[idx], fontsize=20)
-        ax[idx // 2][idx % 2].set_xlabel(xlabel, fontsize=15)
-        ax[idx // 2][idx % 2].set_ylabel(ylabel, fontsize=15)
+        ax[idx // 2][idx % 2].set_title(cate[idx], fontsize=25)
+        ax[idx // 2][idx % 2].set_xlabel(xlabel, fontsize=25)
+        ax[idx // 2][idx % 2].set_ylabel(ylabel, fontsize=25)
+        ax[idx // 2][idx % 2].tick_params(axis='both', which='major', labelsize=25)
         if xlim is not None:
             ax[idx // 2][idx % 2].set_xlim(xlim[0], xlim[1])
         if ylim is not None:
@@ -187,7 +188,7 @@ def ScatterPlotByCategory(df: pd.DataFrame, _x: str, _y: str, cate: [str], path:
         pass
     else:
         plt.suptitle(title)
-    plt.savefig(path, dpi=300)
+    plt.savefig(path, dpi=600)
 
 
 def preformatAmazonData(df: pd.DataFrame) -> pd.DataFrame:
@@ -279,6 +280,7 @@ if __name__ == "__main__":
     time_limit = pd.to_datetime('2000-01-01')
     dfamazon = dfamazon[dfamazon['PublishDate'] >= time_limit]
     dfbook = dfbook[dfbook['PublishDate'] >= time_limit]
+    print("cleaning data done",end='\n')
     print(dfbook.head())
     print(dfamazon.head())
     cates = [
@@ -303,6 +305,7 @@ if __name__ == "__main__":
     dfamazon_ = dfamazon_[dfamazon_['FirstDepRank'] <= 100]
     dfbook = dfbook[dfbook['attr'] == 7]
     dfbook = dfbook.drop_duplicates(subset=['rank','cate'])
+    print("start plotting",end='\n')
     ScatterPlotByCategory(dfbook, 'rank', "discount", cates, title="", cate_name='eng_cate',
                           path='./googleDocxPic/BookRankDiscountScatterPlot.png'
                           , ylim=[0, 1.2])
